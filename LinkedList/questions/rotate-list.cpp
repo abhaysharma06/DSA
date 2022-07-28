@@ -26,7 +26,8 @@ void createLinkedList()
       return;
     }
 
-    cout << "Enter the data part";
+    cout << "Enter the data part"
+         << " ";
     cin >> newNode->data;
     newNode->next = NULL;
 
@@ -43,17 +44,22 @@ void createLinkedList()
   }
 }
 
-int detectLoop()
+void rotateList(Node *head)
 {
-  struct Node *slow = head, *fast = head;
-  while (slow && fast && fast->next)
+  if (head == NULL || head->next == NULL)
+    return;
+
+  Node *temp = head;
+  Node *prev = NULL;
+  while (temp->next != NULL)
   {
-    slow = slow->next;
-    fast = fast->next->next;
-    if (slow == fast)
-      return 1;
+    prev = temp;
+    temp = temp->next;
   }
-  return 0;
+  prev->next = NULL;
+  // cout << temp->next << " ";
+  temp->next = head;
+  head = temp;
 }
 
 void display()
@@ -62,7 +68,7 @@ void display()
   ptr = head;
   while (ptr != NULL)
   {
-    cout << ptr->data << endl;
+    cout << ptr->data << " ";
     ptr = ptr->next;
   }
 }
@@ -70,6 +76,8 @@ void display()
 int main()
 {
   createLinkedList();
+  // display();
+  rotateList(head);
   display();
   return 0;
 }
