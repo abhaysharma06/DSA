@@ -49,6 +49,8 @@ void display()
   }
 }
 
+// reverse linked list by recursion
+
 void reverseDisplay(struct Node *start)
 {
   if (start == NULL)
@@ -57,6 +59,23 @@ void reverseDisplay(struct Node *start)
        << " ";
   reverseDisplay(start->next);
   cout << start->data << " ";
+}
+
+// reverse linked list by itr;
+
+void reverReverseList()
+{
+  struct Node *prevNode, *currNode, *nextNode;
+  currNode = nextNode = head;
+  prevNode = NULL;
+  while (nextNode != NULL)
+  {
+    nextNode = nextNode->next;
+    currNode->next = prevNode;
+    prevNode = currNode;
+    currNode = nextNode;
+  }
+  head = prevNode;
 }
 
 int main()
