@@ -63,7 +63,7 @@ void reverseDisplay(struct Node *start)
 
 // reverse linked list by itr;
 
-void reverReverseList()
+struct Node *reverReverseList()
 {
   struct Node *prevNode, *currNode, *nextNode;
   currNode = nextNode = head;
@@ -76,12 +76,16 @@ void reverReverseList()
     currNode = nextNode;
   }
   head = prevNode;
+  return prevNode;
 }
 
 int main()
 {
   createList();
   display();
-  reverseDisplay(head);
+  // reverseDisplay(head);
+  cout << reverReverseList();
+  // display();
+
   return 0;
 }
